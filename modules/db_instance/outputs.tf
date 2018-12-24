@@ -11,6 +11,12 @@ locals {
   this_db_instance_username          = "${element(concat(coalescelist(aws_db_instance.this_mssql.*.username, aws_db_instance.this.*.username), list("")), 0)}"
   this_db_instance_password          = "${element(concat(coalescelist(aws_db_instance.this_mssql.*.password, aws_db_instance.this.*.password), list("")), 0)}"
   this_db_instance_port              = "${element(concat(coalescelist(aws_db_instance.this_mssql.*.port, aws_db_instance.this.*.port), list("")), 0)}"
+  this_monitoring_role_arn           = "${coalesce(var.monitoring_role_arn, join("", aws_iam_role.enhanced_monitoring.*.arn))}"
+}
+
+output "this_monitoring_role_arn" {
+  description = "The ARN of the IAM role created for monitoring"
+  value       = "${local.this_monitoring_role_arn}"
 }
 
 output "this_db_instance_address" {
