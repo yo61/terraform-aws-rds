@@ -78,7 +78,9 @@ resource "aws_db_instance" "this" {
   tags = "${merge(var.tags, map("Name", format("%s", var.identifier)))}"
 
   lifecycle {
-    ignore_changes = "${var.lifecycle_ignore_changes}"
+    ignore_changes = [
+      "snapshot_identifier",
+    ]
   }
 }
 

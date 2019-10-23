@@ -165,7 +165,6 @@ module "db" {
 | iops | The amount of provisioned IOPS. Setting this implies a storage_type of 'io1' | string | `"0"` | no |
 | kms\_key\_id | The ARN for the KMS encryption key. If creating an encrypted replica, set this to the destination KMS ARN. If storage_encrypted is set to true and kms_key_id is not specified the default KMS key created in your account will be used | string | `""` | no |
 | license\_model | License model information for this DB instance. Optional, but required for some DB engines, i.e. Oracle SE1 | string | `""` | no |
-| lifecycle\_ignore\_changes | List of attributes to ignore when considering changes | list | `[]` | no |
 | maintenance\_window | The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00' | string | n/a | yes |
 | major\_engine\_version | Specifies the major version of the engine that this option group should be associated with | string | `""` | no |
 | max\_allocated\_storage | Specifies the value for Storage Autoscaling | string | `"0"` | no |

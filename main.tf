@@ -113,8 +113,4 @@ module "db_instance" {
   deletion_protection = "${var.deletion_protection}"
 
   tags = "${var.tags}"
-
-  lifecycle {
-    ignore_changes = "${var.lifecycle_ignore_changes}"
-  }
 }
