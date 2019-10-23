@@ -1,12 +1,12 @@
 locals {
   db_subnet_group_name          = "${coalesce(var.db_subnet_group_name, module.db_subnet_group.this_db_subnet_group_id)}"
-  enable_create_db_subnet_group = "${var.db_subnet_group_name == "" ? var.create_db_subnet_group : 0}"
+  enable_create_db_subnet_group = "${var.db_subnet_group_name == "" ? var.create_db_subnet_group : false}"
 
   parameter_group_name    = "${coalesce(var.parameter_group_name, var.identifier)}"
   parameter_group_name_id = "${coalesce(var.parameter_group_name, module.db_parameter_group.this_db_parameter_group_id)}"
 
   option_group_name             = "${coalesce(var.option_group_name, module.db_option_group.this_db_option_group_id)}"
-  enable_create_db_option_group = "${var.option_group_name == "" && var.engine != "postgres" ? var.create_db_option_group : 0}"
+  enable_create_db_option_group = "${var.option_group_name == "" && var.engine != "postgres" ? var.create_db_option_group : false}"
 }
 
 module "db_subnet_group" {
@@ -93,6 +93,8 @@ module "db_instance" {
   skip_final_snapshot         = "${var.skip_final_snapshot}"
   copy_tags_to_snapshot       = "${var.copy_tags_to_snapshot}"
   final_snapshot_identifier   = "${var.final_snapshot_identifier}"
+
+  performance_insights_enabled = "${var.performance_insights_enabled}"
 
   backup_retention_period = "${var.backup_retention_period}"
   backup_window           = "${var.backup_window}"

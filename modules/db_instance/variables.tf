@@ -218,3 +218,8 @@ variable "deletion_protection" {
   description = "The database can't be deleted when this value is set to true."
   default     = false
 }
+
+variable "performance_insights_enabled" {
+  description = "Specifies whether Performance Insights are enabled"
+  default     = false
+}
