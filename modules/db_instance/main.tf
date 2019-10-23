@@ -76,6 +76,10 @@ resource "aws_db_instance" "this" {
   deletion_protection = "${var.deletion_protection}"
 
   tags = "${merge(var.tags, map("Name", format("%s", var.identifier)))}"
+
+  lifecycle {
+    ignore_changes = "${var.lifecycle_ignore_changes}"
+  }
 }
 
 resource "aws_db_instance" "this_mssql" {

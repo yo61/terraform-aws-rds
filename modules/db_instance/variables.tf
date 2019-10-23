@@ -223,3 +223,8 @@ variable "performance_insights_enabled" {
   description = "Specifies whether Performance Insights are enabled"
   default     = false
 }
+
+variable "lifecycle_ignore_changes" {
+  description = "List of attributes to ignore when considering changes"
+  default     = []
+}
